@@ -36,11 +36,12 @@ class Automaton():
                 self.words.append(linie.strip())
             if ok == 2:  # suntem pe stari
                 # cazul 1, stari care pot fi finale SI initiale, in acelasi timp
+                # print(linie.strip().split(','))
                 if len(linie.strip().split(',')) > 2:
                     self.states.append(linie.strip().split()[0])
                     if linie.strip().split(',')[2] == 'F' or linie.strip().split(',')[1] == 'F':
                         self.final.append(linie.strip().split(' ,')[0])
-                    if linie.strip().split(',')[2] == 'S' or linie.strip().split(',')[1] == 'S':
+                    if linie.strip().split(',')[2] == 'S ' or linie.strip().split(',')[1] == 'S ':
                         self.initial = linie.strip().split(' ,')[0]
                 # cazul 2, stari care sunt doar finale SAU doar initiale
                 elif len(linie.strip().split(',')) == 2:
@@ -88,13 +89,13 @@ class Automaton():
             for cuvant in self.words:
                 if cuvant not in Tranzitii_stari[elem]:
                     Tranzitii_stari[elem][cuvant] = []
-        # print(Tranzitii_stari)
+        print(Tranzitii_stari)
         self.dictionar = Tranzitii_stari
-        # print(self.words)
-        # print(self.states)
-        # print(self.final)
-        # print(self.initial)
-        # print(self.dictionar)
+        print(self.words)
+        print(self.states)
+        print(self.final)
+        print(self.initial)
+        print(self.dictionar)
         
         for tranzitie in self.transitions:
             if tranzitie[0] not in self.states or tranzitie[1] not in self.words or tranzitie[2] not in self.states:
